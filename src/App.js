@@ -13,9 +13,9 @@ function App() {
         <RandomDish color="indigo" dishType="dessert" />
       </div>
       <div className="flex flex-col sm:flex-row">
-        <Dish title="Entrées" color="green" dishType="starters" />
-        <Dish title="Plats" color="orange" dishType="dish" />
-        <Dish title="Dessert" color="indigo" dishType="dessert" />
+        <Dish title="Entrées" placeholder="Ajouter une entrée" color="green" dishType="starters" />
+        <Dish title="Plats" placeholder="Ajouter un plat" color="orange" dishType="dish" />
+        <Dish title="Dessert" placeholder="Ajouter un dessert" color="indigo" dishType="dessert" />
       </div>
     </div>
   );

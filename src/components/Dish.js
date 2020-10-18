@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Dish({ title, color, dishType }) {
+function Dish({ title, placeholder, color, dishType }) {
   const [inputText, setInputText] = useState("");
   const [dishesList, setDishesList] = useState([]);
 
@@ -63,7 +63,7 @@ function Dish({ title, color, dishType }) {
           }
           type="text"
           value={inputText}
-          placeholder="Ajouter une entrée"
+          placeholder={placeholder}
         />
         <button
           className={
