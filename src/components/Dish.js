@@ -11,21 +11,23 @@ function Dish({ title, color, dishType }) {
   const addDish = (e) => {
     e.preventDefault();
 
-    let dishes;
-    if (localStorage.getItem(dishType) === null) {
-      dishes = [];
-    } else {
-      dishes = JSON.parse(localStorage.getItem(dishType));
-    }
-    dishes.push(inputText);
-    localStorage.setItem(dishType, JSON.stringify(dishes));
+    if (inputText) {
+      let dishes;
+      if (localStorage.getItem(dishType) === null) {
+        dishes = [];
+      } else {
+        dishes = JSON.parse(localStorage.getItem(dishType));
+      }
+      dishes.push(inputText);
+      localStorage.setItem(dishType, JSON.stringify(dishes));
 
-    setDishesList(JSON.parse(localStorage.getItem(dishType)));
-    setInputText("");
+      setDishesList(JSON.parse(localStorage.getItem(dishType)));
+      setInputText("");
+    }
   };
 
   const deleteDish = (e) => {
-    let dish = e.target.getAttribute("data-key");
+    let dishId = e.target.getAttribute("data-key");
 
     let dishes;
     if (localStorage.getItem(dishType) === null) {
@@ -33,7 +35,7 @@ function Dish({ title, color, dishType }) {
     } else {
       dishes = JSON.parse(localStorage.getItem(dishType));
     }
-    dishes.splice(dishes.indexOf(dish), 1);
+    dishes.splice(dishId, 1);
     localStorage.setItem(dishType, JSON.stringify(dishes));
     setDishesList(dishes);
   };
@@ -46,10 +48,10 @@ function Dish({ title, color, dishType }) {
       dishes = JSON.parse(localStorage.getItem(dishType));
     }
     setDishesList(dishes);
-  }, []);
+  }, [dishType]);
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center mb-6">
       <h1 className={"text-2xl text-" + color + "-500 m-2"}>{title}</h1>
       <div className="flex justify-center items-center">
         <input
@@ -80,15 +82,18 @@ function Dish({ title, color, dishType }) {
       <div className="m-2">
         <ul className="">
           {dishesList &&
-            dishesList.map((dish) => {
+            dishesList.map((dish, index) => {
               return (
-                <li key={dish} className="flex m-2 items-center">
+                <li
+                  key={index}
+                  className="flex m-2 items-center justify-center"
+                >
                   <p className="mr-5">{dish}</p>
                   <i
                     onClick={deleteDish}
-                    data-key={dish}
+                    data-key={index}
                     className={
-                      "ml-auto text-" +
+                      "ml-auto text-lg text-" +
                       color +
                       "-500 fas fa-trash-alt hover:text-" +
                       color +
