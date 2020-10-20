@@ -1,31 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-function RandomDish({ color, dishType }) {
-  const [randomDish, setRandomDish] = useState("");
+function RandomDish({ color, randomDish }) {
 
-  const generateRandomDish = () => {
-    let dishes;
-    if (localStorage.getItem(dishType) === null) {
-      dishes = [];
-    } else {
-      dishes = JSON.parse(localStorage.getItem(dishType));
-    }
+  
 
-    if (dishes.length > 0) {
-      let randomIndex = Math.floor(Math.random() * Math.floor(dishes.length));
-      setRandomDish(dishes[randomIndex]);
-    }
-  };
-
-  useEffect(() => {
-    generateRandomDish();
-  }, []);
+  // useEffect(() => {
+  //   generateRandomDish();
+  // }, []);
 
   return (
     <div className="w-full flex items-center justify-center">
       <p className="text-3xl text-gray-600 mr-4">{randomDish}</p>
       <i
-        onClick={generateRandomDish}
+        // onClick={generateRandomDish}
         className={
           "fas fa-dice text-2xl text-" +
           color +
